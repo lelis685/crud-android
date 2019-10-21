@@ -3,11 +3,15 @@ package br.com.uninove;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.uninove.banco.ProdutoDAO;
 import br.com.uninove.model.Produto;
@@ -25,15 +29,60 @@ public class ListarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
 
-
         listView = findViewById(R.id.listProdutos);
-
         dao = new ProdutoDAO(this);
         produtos = dao.listarTodos();
         produtosFiltrados.addAll(produtos);
 
-        ArrayAdapter<Produto> adaptador = new ArrayAdapter<Produto>(this,android.R.layout.simple_expandable_list_item_1, produtos);
+        ArrayAdapter<Produto> adaptador = new ArrayAdapter<Produto>(this,android.R.layout.simple_expandable_list_item_1, produtosFiltrados);
         listView.setAdapter(adaptador);
     }
+
+    // exibir menu na tela de listagem
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater i  = getMenuInflater();
+        i.inflate(R.menu.menu_pesquisar,menu);
+
+        SearchView sv = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
+        // verificar se houve algo digitado
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+               pesquisarProduto(s);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+
+    public void pesquisarProduto(String nome){
+        produtosFiltrados.clear();
+        for (Produto p : produtos) {
+            if(p.getNome().toLowerCase().contains(nome.toLowerCase())){
+                produtosFiltrados.add(p);
+            }
+        }
+        // para mostrar dados atualizados
+        listView.invalidateViews();
+    }
+
+
+    // refresh na lista
+    @Override
+    public void onResume() {
+        super.onResume();
+        produtos = dao.listarTodos();
+        produtosFiltrados.clear();
+        produtosFiltrados.addAll(produtos);
+        listView.invalidateViews();
+    }
+
 
 }

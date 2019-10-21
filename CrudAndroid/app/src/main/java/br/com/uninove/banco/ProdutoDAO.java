@@ -35,6 +35,8 @@ public class ProdutoDAO {
     public List<Produto> listarTodos (){
         List<Produto> produtos = new ArrayList<Produto>();
 
+        // select id, nome , valor, categoria from produto;
+        // percorrer cursor e add na lista de produtos
         Cursor cursor = bd.query("produto",
                 new String[]{"id","nome","valor","categoria"},
                 null,null,null,null,null);
