@@ -23,14 +23,34 @@
 
     <Button
         android:id="@+id/btIrTelaCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="166dp"
+        android:layout_height="55dp"
         android:layout_marginStart="119dp"
         android:layout_marginEnd="119dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
         android:onClick="irTelaCadastro"
         android:text="CADASTRAR PRODUTO"
+        android:textColor="@android:color/background_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btIrTelaListarTodos"
+        android:layout_width="156dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginLeft="134dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/LIST"
+        android:onClick="irTelaListarTodos"
+        android:text="LISTAR PRODUTOS"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btIrTelaCadastro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

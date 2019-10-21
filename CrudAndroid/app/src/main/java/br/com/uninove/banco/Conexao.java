@@ -17,10 +17,11 @@ public class Conexao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE produto");
         db.execSQL("CREATE TABLE IF NOT EXISTS produto(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nome VARCHAR NOT NULL, " +
-                "valor VARCHAR NOT NULL, " +
+                "valor REAL NOT NULL, " +
                 "categoria VARCHAR NOT NULL); ");
     }
 

@@ -41,4 +41,10 @@ public class Produto  implements Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "nome='" + nome + '\'' +
+                ", valor=" + valor;
+    }
 }

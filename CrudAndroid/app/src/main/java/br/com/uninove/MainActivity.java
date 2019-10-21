@@ -20,5 +20,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void irTelaListarTodos(View view){
+        Intent intent = new Intent(this, ListarActivity.class);
+        startActivity(intent);
+    }
+
 
 }
