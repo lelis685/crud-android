@@ -14,9 +14,11 @@
         android:layout_marginStart="130dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="130dp"
+        android:layout_marginBottom="20dp"
         android:text="CRUD-ANDROID/SQLITE"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +29,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="119dp"
         android:layout_marginEnd="119dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="180dp"
         android:background="@color/colorPrimary"
         android:onClick="irTelaCadastro"
         android:text="CADASTRAR PRODUTO"
@@ -35,6 +37,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -45,12 +48,49 @@
         android:layout_marginLeft="134dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/LIST"
         android:onClick="irTelaListarTodos"
         android:text="LISTAR PRODUTOS"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btIrTelaCadastro"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="331dp"
+        android:layout_height="242dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toTopOf="@+id/btIrTelaListarTodos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHome"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+    <Button
+        android:id="@+id/btSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="311dp"
+        android:layout_marginLeft="311dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/EXIT"
+        android:text="SAIR"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
