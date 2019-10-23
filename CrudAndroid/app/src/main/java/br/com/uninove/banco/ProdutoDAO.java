@@ -43,7 +43,7 @@ public class ProdutoDAO {
 
         while(cursor.moveToNext()){
             Produto produto = new Produto();
-            produto.setId(cursor.getInt(0));
+            produto.setId(cursor.getLong(0));
             produto.setNome(cursor.getString(1));
             produto.setValor(cursor.getDouble(2));
             produto.setCategoria(cursor.getString(3));
@@ -53,7 +53,16 @@ public class ProdutoDAO {
         return produtos;
     }
 
+    public void excluir(Produto p){
+        bd.delete("produto","id = ?" , new String[]{p.getId().toString()});
+    }
 
 
-
+    public void atualizar(Produto produto) {
+        ContentValues values = new ContentValues();
+        values.put("nome", produto.getNome());
+        values.put("categoria", produto.getCategoria());
+        values.put("valor", produto.getValor());
+        bd.update("produto",values, "id = ?", new String[]{produto.getId().toString()});
+    }
 }

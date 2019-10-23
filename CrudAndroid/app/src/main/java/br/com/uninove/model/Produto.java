@@ -4,17 +4,17 @@ import java.io.Serializable;
 
 public class Produto  implements Serializable {
 
-    private long id;
+    private Long id;
     private String nome;
-    private double valor;
+    private Double valor;
     private String categoria;
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -26,11 +26,11 @@ public class Produto  implements Serializable {
         this.nome = nome;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
