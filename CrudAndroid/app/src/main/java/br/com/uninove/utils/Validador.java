@@ -8,9 +8,9 @@ public class Validador {
 
 
     public static String validar(EditText nome, EditText categoria, EditText valor){
-        if(     categoria.getText().toString().trim().isEmpty() ||
-                nome.getText().toString().trim().isEmpty() ||
-                valor.getText().toString().trim().isEmpty()) {
+        if(     categoria.getText().toString().trim().isEmpty() || categoria == null ||
+                nome.getText().toString().trim().isEmpty() || nome == null ||
+                valor.getText().toString().trim().isEmpty() || valor == null ) {
             return "Por favor preencha todos os campos";
         }
         try{

@@ -43,9 +43,9 @@ public class CadastroActivity extends AppCompatActivity {
 
     private Produto criarProduto(EditText nome,EditText categoria,EditText valor){
         if(Validador.validar(nome,categoria,valor) == null){
-            produto.setCategoria(categoria.getText().toString());
-            produto.setNome(nome.getText().toString());
-            produto.setValor(Double.parseDouble(valor.getText().toString()));
+            produto.setCategoria(categoria.getText().toString().trim());
+            produto.setNome(nome.getText().toString().trim());
+            produto.setValor(Double.parseDouble(valor.getText().toString().trim()));
        }else{
             Toast toast = Toast.makeText(this,Validador.validar(nome,categoria,valor), Toast.LENGTH_SHORT);
             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
@@ -58,17 +58,29 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void salvarOuAtualizar(View view){
         if(produto == null){
-            Produto produto = criarProduto(nome, categoria, valor);
+            produto = new Produto();
+            // valida preenchimento form
+            if(Validador.validar(nome,categoria,valor) == null){
+                produto.setCategoria(categoria.getText().toString().trim());
+                produto.setNome(nome.getText().toString().trim());
+                produto.setValor(Double.parseDouble(valor.getText().toString().trim()));
 
-            // salvando produto no banco
-            long id = dao.inserir(produto);
+                // salvando produto no banco
+                long id = dao.inserir(produto);
 
-            // limpando campos
-            nome.setText("");
-            categoria.setText("");
-            valor.setText("");
+                // limpando campos
+                nome.setText("");
+                categoria.setText("");
+                valor.setText("");
 
-            Toast.makeText(this,"Produto inserido com id: "+ id, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Produto inserido com id: "+ id, Toast.LENGTH_SHORT).show();
+            }else{
+                Toast toast = Toast.makeText(this,Validador.validar(nome,categoria,valor), Toast.LENGTH_SHORT);
+                TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+                v.setTextColor(Color.RED);
+                toast.show();
+            }
+
         }else{
             Produto produto = criarProduto(nome, categoria, valor);
             dao.atualizar(produto);
@@ -76,6 +88,13 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public  void irHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

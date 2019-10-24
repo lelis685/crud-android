@@ -136,4 +136,10 @@ public class ListarActivity extends AppCompatActivity {
         startActivity(it);
     }
 
+
+    public  void irHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

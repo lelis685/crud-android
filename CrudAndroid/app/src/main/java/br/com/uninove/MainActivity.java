@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void irTelaListarTodos(View view){
         Intent intent = new Intent(this, ListarActivity.class);
+        startActivity(intent);
+        Toast.makeText(this,"Clique e segure para aparecer a opção de exclusão e atualização", Toast.LENGTH_LONG).show();
+    }
+
+    public  void irHome(View view){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
