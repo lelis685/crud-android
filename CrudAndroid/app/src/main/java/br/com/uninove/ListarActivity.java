@@ -36,11 +36,13 @@ public class ListarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
 
+        // relacionando obj java com xml
         listView = findViewById(R.id.listProdutos);
         dao = new ProdutoDAO(this);
         produtos = dao.listarTodos();
         produtosFiltrados.addAll(produtos);
 
+        // criando adaptador pra listagem
         ArrayAdapter<Produto> adaptador = new ArrayAdapter<Produto>(this, android.R.layout.simple_expandable_list_item_1, produtosFiltrados);
         listView.setAdapter(adaptador);
 
@@ -55,7 +57,7 @@ public class ListarActivity extends AppCompatActivity {
         i.inflate(R.menu.menu_pesquisar, menu);
 
         SearchView sv = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
-        // verificar se houve algo digitado
+        // verifica se houve algo digitado
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -73,6 +75,7 @@ public class ListarActivity extends AppCompatActivity {
     }
 
 
+    // metodo resposavel pela pesquisa por nome
     public void pesquisarProduto(String nome) {
         produtosFiltrados.clear();
         for (Produto p : produtos) {
@@ -128,15 +131,16 @@ public class ListarActivity extends AppCompatActivity {
     public void atualizar(MenuItem item){
         // obtem posicao item lista
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
+         // criando produto de acordo com a posicao na lista 'produtosFiltrados'
         final Produto p = produtosFiltrados.get(menuInfo.position);
 
+        // chamada para tela de cadastro
         Intent it = new Intent(this,CadastroActivity.class);
         it.putExtra("produto", p);
         startActivity(it);
     }
 
-
+    // metodo usado para navegacao entre telas
     public  void irHome(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

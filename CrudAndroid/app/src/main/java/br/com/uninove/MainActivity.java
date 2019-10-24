@@ -13,12 +13,12 @@ public class MainActivity extends AppCompatActivity {
 
     private Button sair;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // encerrar app
         sair = findViewById(R.id.btSair);
         sair.setOnClickListener(new OnClickListener() {
             @Override
@@ -30,22 +30,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // metodo usado para navegacao entre telas
     public void irTelaCadastro(View view){
         Intent intent = new Intent(this, CadastroActivity.class);
         startActivity(intent);
     }
 
+    // metodo usado para navegacao entre telas
     public void irTelaListarTodos(View view){
         Intent intent = new Intent(this, ListarActivity.class);
         startActivity(intent);
         Toast.makeText(this,"Clique e segure para aparecer a opção de exclusão e atualização", Toast.LENGTH_LONG).show();
     }
 
+    // metodo usado para navegacao entre telas
     public  void irHome(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-
 
 }

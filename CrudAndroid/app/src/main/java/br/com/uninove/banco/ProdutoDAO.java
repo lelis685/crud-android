@@ -15,7 +15,6 @@ public class ProdutoDAO {
     private Conexao conexao;
     private SQLiteDatabase bd;
 
-
     public  ProdutoDAO(Context context){
         conexao = new Conexao(context);
         bd = conexao.getWritableDatabase();
@@ -53,11 +52,13 @@ public class ProdutoDAO {
         return produtos;
     }
 
+    // delete from produto where id = ?
     public void excluir(Produto p){
         bd.delete("produto","id = ?" , new String[]{p.getId().toString()});
     }
 
 
+    // update produto set nome = ?, categoria =? , valor = ? where id = ?
     public void atualizar(Produto produto) {
         ContentValues values = new ContentValues();
         values.put("nome", produto.getNome());

@@ -25,12 +25,15 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        // relacionando obj java com xml
         nome = findViewById(R.id.editNome);
         categoria = findViewById(R.id.editCategoria);
         valor = findViewById(R.id.editValor);
 
+        // instanciando classe ProdutoDAO passando como parametro contexto atual
         dao = new ProdutoDAO(this);
 
+        // verificando se existe produto para setar os valores na tela de atualizacao
         Intent it = getIntent();
         if (it.hasExtra("produto")) {
             produto = (Produto) it.getSerializableExtra("produto");
@@ -41,11 +44,14 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
 
+
     private Produto criarProduto(EditText nome,EditText categoria,EditText valor){
+        // verificando se nao existi nenhum erro na validacao do form
         if(Validador.validar(nome,categoria,valor) == null){
             produto.setCategoria(categoria.getText().toString().trim());
             produto.setNome(nome.getText().toString().trim());
             produto.setValor(Double.parseDouble(valor.getText().toString().trim()));
+      // existindo erro no form exibir msg de acordo com o que esta preenchido errado
        }else{
             Toast toast = Toast.makeText(this,Validador.validar(nome,categoria,valor), Toast.LENGTH_SHORT);
             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
@@ -56,7 +62,9 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
 
+    // metodo responsavel para salvar ou atualizar produto de acordo com a opcao clicada na listagem
     public void salvarOuAtualizar(View view){
+        // caso nao exista produto no extra sera chamado o metodo inserir
         if(produto == null){
             produto = new Produto();
             // valida preenchimento form
@@ -83,13 +91,14 @@ public class CadastroActivity extends AppCompatActivity {
 
         }else{
             Produto produto = criarProduto(nome, categoria, valor);
+            // atualizando produto no banco
             dao.atualizar(produto);
             Toast.makeText(this,"Produto foi atualizado", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-
+   // metodo usado para navegacao entre telas
     public  void irHome(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
