@@ -44,7 +44,9 @@ public class Produto  implements Serializable {
 
     @Override
     public String toString() {
-        return "nome='" + nome + '\'' +
-                ", valor=" + valor;
+        return "{ " +
+                " \"Nome\" : " + nome + ",\n" +
+                "  \"Valor\": " + valor + "\n" +
+                " } ";
     }
 }
