@@ -17,17 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // encerrar app
-        sair = findViewById(R.id.btSair);
-        sair.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                System.exit(0);
-            }
-        });
-
     }
 
     // metodo usado para navegacao entre telas
@@ -47,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
     public  void irHome(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    // metodo usado para sair do app
+    public  void sair(View view){
+        this.sair = (Button)this.findViewById(R.id.btSair);
+        this.sair.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 }
